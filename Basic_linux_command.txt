@@ -1,0 +1,13 @@
+Terminal commands which can be used on Linux Operating system
+
+
+1. ls -> It is used to list down all the files in teh current directory
+2. cd -> Used to change directories
+3. mkdir -> Used to create a directory or a file
+4. rmdir -> Used to delete a list of directories
+5. touch -> creates an empty files
+6. clear -> clears the terminal 
+7. rm -> Deletes files
+8. pwd -> Displays the current working directory
+9. mv -> renames a file
+10. cp -> used to cp contents of one file to another. 
