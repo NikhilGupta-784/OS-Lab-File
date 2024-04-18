@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 # SJF
 import heapq as hq
 # number of process
