@@ -1,10 +1,8 @@
 ## OS LAB FILE
 
-Semester IV
-
-Batch: CO A5 --- G1
-
-Nikhil Kumar Gupta 2K22/CO/308
+Nikhil Kumar Gupta 
+2K22/CO/308
+A5-G1
 
 ## Contents
 

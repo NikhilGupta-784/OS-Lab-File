@@ -15,7 +15,6 @@ class Graph:
         parent = [(-1, -1)] * self.V  # Store MST edges
         in_mst = [False] * self.V  # Track if vertex is included in MST
 
-        # Start with vertex 0
         key[0] = 0
 
         while pq:
