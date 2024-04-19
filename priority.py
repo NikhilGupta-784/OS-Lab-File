@@ -1,5 +1,5 @@
 
-# PRIORITY QUEUE
+# PRIORITY SCHEDULING
  
 totalprocess = 5
 proc = [] 

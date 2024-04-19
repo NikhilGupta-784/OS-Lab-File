@@ -1,42 +1,40 @@
-from threading import Thread
-from time import sleep
+import threading
+import time
 
-class DekkerMutex:
-    def __init__(self):
-        self.flag = [False, False]  # Flags for each process
-        self.turn = 0               # The turn variable to indicate whose turn it is
-        self.other = lambda i: 1 - i  # Helper function to get the index of the other process
+NUM_THREADS = 2
 
-    def lock(self, process_id):
-        self.flag[process_id] = True
-        while self.flag[self.other(process_id)] and self.turn == self.other(process_id):
-            # Wait while other process is in critical section and it's their turn
-            pass
+wants_to_enter = [False] * NUM_THREADS
+turn = 0
 
-    def unlock(self, process_id):
-        self.turn = self.other(process_id)
-        self.flag[process_id] = False
+semaphore = threading.Semaphore()
 
-# Example usage
-def process1(mutex):
-    for _ in range(5):
-        mutex.lock(0)
-        print("Process 1 is in critical section")
-        sleep(1)
-        mutex.unlock(0)
+def dekker(thread_id):
+    global turn
+    for i in range(5):
+        wants_to_enter[thread_id] = True
+        while wants_to_enter[1 - thread_id]:
+            if turn != thread_id:
+                wants_to_enter[thread_id] = False
+                while turn != thread_id:
+                    pass
+                wants_to_enter[thread_id] = True
 
-def process2(mutex):
-    for _ in range(5):
-        mutex.lock(1)
-        print("Process 2 is in critical section")
-        sleep(1)
-        mutex.unlock(1)
+        print(f"Thread {thread_id} is in critical section")
+        time.sleep(0.5)
+        turn = 1 - thread_id
+        wants_to_enter[thread_id] = False
+
+def main():
+    threads = []
+    for i in range(NUM_THREADS):
+        t = threading.Thread(target=dekker, args=(i,))
+        threads.append(t)
+
+    for t in threads:
+        t.start()
+
+    for t in threads:
+        t.join()
 
 if __name__ == "__main__":
-    mutex = DekkerMutex()
-    thread1 = Thread(target=process1, args=(mutex,))
-    thread2 = Thread(target=process2, args=(mutex,))
-    thread1.start()
-    thread2.start()
-    thread1.join()
-    thread2.join()
+    main()

@@ -45,9 +45,3 @@ for process in l:
 	avg_tat += process.turnaround()
 	avg_wat += process.waiting()
 print(f"Avg_turnaround:{avg_tat/num}\nAvg_Waitingtime:{avg_wat/num}")
-
-# pid at bt
-# 1   0  5
-# 2   2  3
-# 3   6  2
-# 4   7  3

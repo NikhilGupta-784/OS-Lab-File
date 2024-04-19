@@ -50,8 +50,6 @@ def sjfNonpremetive(arr):
 			if (arr[i][1] <= ctime
 				and arr[i][1] != -1) :
 				hq.heappush(wait,arr[i].copy())
-
-				
 				arr[i][1] = -1
 			
 
